@@ -17,6 +17,11 @@ namespace Clinic.Infrastructure.Data
         }
 
         public DbSet<Appointment> Appointments { set; get; }
+        public DbSet<AppointmentType> AppointmentTypes { set; get; }
+        public DbSet<Doctor> Doctors { set; get; }
+        public DbSet<Patient> Patients { set; get; }
+        public DbSet<ReasonCancellation> ReasonsCancellation { set; get; }
+
         public DbSet<Attachment> Attachments { set; get; }
         public DbSet<ContactUs> ContactUs { set; get; }
         public DbSet<ExternalRequest> ExternalRequests { set; get; }

@@ -50,11 +50,17 @@ namespace Clinic.Infrastructure.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("ExpiryDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Gender")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LandPhone")
                         .HasColumnType("nvarchar(max)");
@@ -131,6 +137,9 @@ namespace Clinic.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("AppointmentTypeId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -143,17 +152,77 @@ namespace Clinic.Infrastructure.Migrations
                     b.Property<DateTime?>("EndAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
+
+                    b.Property<bool>("IsShow")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PatientBy")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("PatientNote")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ReasonCancellationId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("StartAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppointmentTypeId");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("DoctorBy");
+
+                    b.HasIndex("PatientBy");
+
+                    b.HasIndex("ReasonCancellationId");
+
+                    b.HasIndex("UpdatedBy");
+
+                    b.ToTable("Appointments");
+                });
+
+            modelBuilder.Entity("Clinic.Core.Entities.AppointmentType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("AllowAppointment")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TypeName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -165,13 +234,9 @@ namespace Clinic.Infrastructure.Migrations
 
                     b.HasIndex("CreatedBy");
 
-                    b.HasIndex("DoctorBy");
-
-                    b.HasIndex("PatientBy");
-
                     b.HasIndex("UpdatedBy");
 
-                    b.ToTable("Appointments");
+                    b.ToTable("AppointmentTypes");
                 });
 
             modelBuilder.Entity("Clinic.Core.Entities.Attachment", b =>
@@ -264,6 +329,35 @@ namespace Clinic.Infrastructure.Migrations
                     b.ToTable("ContactUs");
                 });
 
+            modelBuilder.Entity("Clinic.Core.Entities.Doctor", b =>
+                {
+                    b.Property<string>("DoctorId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("DoctorId");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("UpdatedBy");
+
+                    b.ToTable("Doctors");
+                });
+
             modelBuilder.Entity("Clinic.Core.Entities.ExternalRequest", b =>
                 {
                     b.Property<int>("Id")
@@ -345,6 +439,72 @@ namespace Clinic.Infrastructure.Migrations
                     b.HasIndex("UpdatedBy");
 
                     b.ToTable("GeneralSettings");
+                });
+
+            modelBuilder.Entity("Clinic.Core.Entities.Patient", b =>
+                {
+                    b.Property<string>("PatientId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("PatientId");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("UpdatedBy");
+
+                    b.ToTable("Patients");
+                });
+
+            modelBuilder.Entity("Clinic.Core.Entities.ReasonCancellation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("UpdatedBy");
+
+                    b.ToTable("ReasonsCancellation");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -495,6 +655,10 @@ namespace Clinic.Infrastructure.Migrations
 
             modelBuilder.Entity("Clinic.Core.Entities.Appointment", b =>
                 {
+                    b.HasOne("Clinic.Core.Entities.AppointmentType", "AppointmentType")
+                        .WithMany()
+                        .HasForeignKey("AppointmentTypeId");
+
                     b.HasOne("Clinic.Core.Entities.AppUser", "CreatedByItem")
                         .WithMany()
                         .HasForeignKey("CreatedBy");
@@ -507,15 +671,38 @@ namespace Clinic.Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("PatientBy");
 
+                    b.HasOne("Clinic.Core.Entities.ReasonCancellation", "ReasonCancellation")
+                        .WithMany()
+                        .HasForeignKey("ReasonCancellationId");
+
                     b.HasOne("Clinic.Core.Entities.AppUser", "UpdatedByItem")
                         .WithMany()
                         .HasForeignKey("UpdatedBy");
+
+                    b.Navigation("AppointmentType");
 
                     b.Navigation("CreatedByItem");
 
                     b.Navigation("DoctorByItem");
 
                     b.Navigation("PatientByItem");
+
+                    b.Navigation("ReasonCancellation");
+
+                    b.Navigation("UpdatedByItem");
+                });
+
+            modelBuilder.Entity("Clinic.Core.Entities.AppointmentType", b =>
+                {
+                    b.HasOne("Clinic.Core.Entities.AppUser", "CreatedByItem")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy");
+
+                    b.HasOne("Clinic.Core.Entities.AppUser", "UpdatedByItem")
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy");
+
+                    b.Navigation("CreatedByItem");
 
                     b.Navigation("UpdatedByItem");
                 });
@@ -550,6 +737,29 @@ namespace Clinic.Infrastructure.Migrations
                     b.Navigation("UpdatedByItem");
                 });
 
+            modelBuilder.Entity("Clinic.Core.Entities.Doctor", b =>
+                {
+                    b.HasOne("Clinic.Core.Entities.AppUser", "CreatedByItem")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy");
+
+                    b.HasOne("Clinic.Core.Entities.AppUser", "DoctorItem")
+                        .WithMany()
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Clinic.Core.Entities.AppUser", "UpdatedByItem")
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy");
+
+                    b.Navigation("CreatedByItem");
+
+                    b.Navigation("DoctorItem");
+
+                    b.Navigation("UpdatedByItem");
+                });
+
             modelBuilder.Entity("Clinic.Core.Entities.ExternalRequest", b =>
                 {
                     b.HasOne("Clinic.Core.Entities.AppUser", "CreatedByItem")
@@ -566,6 +776,44 @@ namespace Clinic.Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("Clinic.Core.Entities.GeneralSettings", b =>
+                {
+                    b.HasOne("Clinic.Core.Entities.AppUser", "CreatedByItem")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy");
+
+                    b.HasOne("Clinic.Core.Entities.AppUser", "UpdatedByItem")
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy");
+
+                    b.Navigation("CreatedByItem");
+
+                    b.Navigation("UpdatedByItem");
+                });
+
+            modelBuilder.Entity("Clinic.Core.Entities.Patient", b =>
+                {
+                    b.HasOne("Clinic.Core.Entities.AppUser", "CreatedByItem")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy");
+
+                    b.HasOne("Clinic.Core.Entities.AppUser", "PatientItem")
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Clinic.Core.Entities.AppUser", "UpdatedByItem")
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy");
+
+                    b.Navigation("CreatedByItem");
+
+                    b.Navigation("PatientItem");
+
+                    b.Navigation("UpdatedByItem");
+                });
+
+            modelBuilder.Entity("Clinic.Core.Entities.ReasonCancellation", b =>
                 {
                     b.HasOne("Clinic.Core.Entities.AppUser", "CreatedByItem")
                         .WithMany()

@@ -1,4 +1,5 @@
-﻿using Clinic.Core.Entities.Base;
+﻿using Clinic.Core.Constant;
+using Clinic.Core.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,9 +15,20 @@ namespace Clinic.Core.Entities
         [Key]
         public int Id { get; set; }
 
-        public bool IsActive { get; set; }
+        public bool IsShow { get; set; }
         public DateTime? StartAt { get; set; }
         public DateTime? EndAt { get; set; }
+        public string Note { get; set; }
+        public string PatientNote { get; set; }
+        public AppointmentStatus Status { get; set; }
+
+        public int? AppointmentTypeId { get; set; }
+        [ForeignKey(nameof(AppointmentTypeId))]
+        public AppointmentType AppointmentType { get; set; }
+
+        public int? ReasonCancellationId { get; set; }
+        [ForeignKey(nameof(ReasonCancellationId))]
+        public ReasonCancellation ReasonCancellation { get; set; }
 
         public string PatientBy { get; set; }
         [ForeignKey(nameof(PatientBy))]
@@ -28,7 +40,8 @@ namespace Clinic.Core.Entities
 
         public Appointment(string CreatedBy = null) : base(CreatedBy)
         {
-            IsActive = false;
+            IsShow = true;
+            Status = AppointmentStatus.Pending;
         }
     }
 }

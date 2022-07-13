@@ -16,6 +16,9 @@ namespace Clinic.Core.Entities
         public string LandPhone { get; set; }
         public string Address { get; set; }
 
+        public bool IsActive { get; set; }
+        public DateTime? ExpiryDate { get; set; }
+
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public string CreatedBy { get; set; }
@@ -29,6 +32,7 @@ namespace Clinic.Core.Entities
         {
             this.CreatedAt = DateTime.Now;
             this.CreatedBy = CreatedBy;
+            this.IsActive = false;
         }
     }
 }

@@ -1,0 +1,127 @@
+﻿@{
+    ViewData["Title"] = "المسؤولون";
+}
+
+@section Css{
+}
+
+<div class="m-portlet m-portlet--mobile">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    <span style="color: #0e0e0e !important">فهرس مسؤولي النظام</span>
+                    <small style="color: #141414 !important">يمكنك عرض وتعديل بيانات مسؤولي النظام</small>
+                </h3>
+            </div>
+        </div>
+        <div class="m-portlet__head-tools">
+            <ul class="m-portlet__nav">
+                <li class="m-portlet__nav-item">
+                    <a href="~/Users/Create" title="اضافة مسؤول جديدة" class="PopUp rounded m-btn--sm btn btn-success m-btn m-btn--custom m-btn--icon">
+                        <span>
+                            <i class="fa fa-plus-square"></i>
+                            <span style="font-size:14px">اضافة</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        <table class="table m-table table-bordered m-table--head-separator-success" id="dataTableId" style="margin-top:30px!important">
+            <thead align="center">
+                <tr>
+                    <th>اسم المستخدم</th>
+                    <th>الاسم كامل</th>
+                    <th>رقم الهوية</th>
+                    <th>الموبايل</th>
+                    <th>الصلاحية</th>
+                    <th>الفعالية</th>
+                    <th>العمليات</th>
+                </tr>
+            </thead>
+            <tbody align="center"></tbody>
+        </table>
+    </div>
+
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {
+            $(".DTForm").submit(function () {
+                BindDataTable();
+                return false;
+            });
+            BindDataTable();
+        });
+
+        $(document).on("click", ".SearchBtn", function () {
+            BindDataTable();
+        });
+
+        function BindDataTable() {
+            oTable = $('#dataTableId').dataTable(
+                {
+                    language: {
+                        aria: {
+                            sortAscending: ": فعال لترتيب العمود تصاعديا", sortDescending: ": فعال لترتيب العمود تنازليا"
+                        }
+                        , emptyTable: "لا يوجد بيانات لعرضها", info: "عرض _START_ الى _END_ من _TOTAL_ صف", infoEmpty: "لا يوجد نتائج لعرضها", infoFiltered: "(filtered1 من _MAX_ اجمالي صفوف)", lengthMenu: "_MENU_", search: "بحث", zeroRecords: "لا يوجد نتائج لعرضها",
+                        paginate: { sFirst: "الاول", sLast: "الاخير", sNext: "التالي", sPrevious: "السابق" }
+                    },
+
+                    "dom":
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-4'i><'col-sm-4 text-center'l><'col-sm-4'p>>",
+                    "iDisplayLength": 10,
+                    "sPaginationType": "full_numbers",
+                    "bFilter": false,
+                    "bDestroy": true,
+                    "bSort": false,
+                    "bStateSave": true,
+                    "bLengthChange": true,
+                    "columnDefs": [{
+                        "orderable": false
+                    }],
+                    //"bSort": false,
+                    serverSide: true,
+                    columns: [
+                        { data: 'UserName' },
+                        { data: 'FullName' },
+                        { data: 'IdentityNumber' },
+                        { data: 'Mobile' },
+                        {
+                            "render": function (data, type, row) {
+                                var types = {
+                                    true: "فعال",
+                                    false: "غير فعال"
+                                };
+                                return "<span style='width: 110px;'><span class='rounded m-badge m-badge--success m-badge--wide'><b>" + types[row["IsActive"]] + "</b></span></span>";
+                            }
+                        },
+                        { data: 'RoleType' },
+                        {
+                            name: 'buttons', "render": function (data, type, row) {
+                                return ""
+                                    + "<a title='تعديل المسؤول' href='/Users/Create?id=" + row["Id"] + "' class='PopUp btn btn-sm m-btn m-btn--icon icon-size-dt'><i class='fa fa-edit icon-size-dt'></i></a>"
+                                    + "<a title='حذف المسؤول' tname='#dataTableId' href='/Users/Delete?id=" + row["Id"] + "' class='Confirm btn text-danger btn-sm m-btn m-btn--icon icon-size-dt'><i class='flaticon-delete-1 icon-size-dt'></i></a>"
+                            }
+                        }
+                    ],
+                    ajax: {
+                        type: "POST",
+                        contentType: "application/json",
+                        url: '/Users/GetAll',
+                        data: function (d) {
+                            d.SearchKey = ($("[name=SearchKey]").val());
+                            return JSON.stringify(d);
+                        }
+                    }
+                });
+        }
+
+    </script>
+
+}

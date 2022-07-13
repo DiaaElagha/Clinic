@@ -1,0 +1,143 @@
+﻿@*@model Museum.Web.Models.ViewModels.CP.UserVM
+@using Museum.Web.Helper
+@using Museum.Web.Models.Constants
+@{
+    ViewData["Title"] = "Create Client";
+}
+@{
+    Layout = null;
+}
+@{
+    List<Gender> genders = Utilities.GetEnumAsListValues<Gender>();
+    List<RoleTypeEnum> roles = Utilities.GetEnumAsListValues<RoleTypeEnum>();
+}
+
+<form asp-action="Create" method="post" class="ajaxForm" tname="#dataTableId">
+    <input type="hidden" value="@Context.Request.Query["id"]" name="id" />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="FullName"></label>
+                <input asp-for="FullName" placeholder="ادخل الاسم كامل" class="rounded form-control form-control-solid" autofocus />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="IdentityNumber"></label>
+                <input asp-for="IdentityNumber" placeholder="ادخل رقم الهوية" class="rounded form-control form-control-solid" />
+                <span asp-validation-for="IdentityNumber" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Mobile1"></label>
+                <input asp-for="Mobile1" placeholder="ادخل رقم الموبايل الاول" class="rounded form-control form-control-solid" />
+                <span asp-validation-for="Mobile1" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Mobile2"></label>
+                <input asp-for="Mobile2" placeholder="ادخل رقم الموبايل الثاني" class="rounded form-control form-control-solid" />
+                <span asp-validation-for="Mobile2" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="LandPhone"></label>
+                <input asp-for="LandPhone" placeholder="ادخل رقم الهاتف" class="rounded form-control form-control-solid" />
+                <span asp-validation-for="LandPhone" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="DateOfBirth"></label>
+                <input asp-for="DateOfBirth" placeholder="ادخل تاريخ الميلاد" class="rounded form-control form-control-solid" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Gender"></label>
+                <select asp-for="Gender" class="rounded selectpicker text-right" data-width="100%" data-size="7">
+                    <option value="">الجنس</option>
+                    @foreach (var item in genders)
+                    {
+                        <option value="@((int)item)">@item.GetDisplayName()</option>
+                    }
+                </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Address"></label>
+                <input asp-for="Address" placeholder="ادخل العنوان" class="rounded form-control form-control-solid" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Role"></label>
+                <select asp-for="Role" class="rounded selectpicker text-right" data-width="100%" data-size="7">
+                    <option value="">الصلاحية</option>
+                    @foreach (var item in roles)
+                    {
+                        <option value="@((int)item)">@item.GetDisplayName()</option>
+                    }
+                </select>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="ExpiryDate"></label>
+                <input asp-for="ExpiryDate" class="rounded form-control form-control-solid" />
+                <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="IsActive" asp-for="IsActive" class="control-label"></label>
+                <div class="form-group">
+                    <span class="m-switch m-switch--outline m-switch--icon m-switch--success">
+                        <label>
+                            <input type="checkbox" asp-for="IsActive">
+                            <span></span>
+                        </label>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="UserName"></label>
+                <input asp-for="UserName" placeholder="ادخل اسم المستخدم" class="rounded form-control form-control-solid" autocomplete="off" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" placeholder="ادخل كلمة المرور" class="rounded form-control form-control-solid" autocomplete="off" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="rounded btn btn-primary mr-2">حفظ</button>
+        <button type="button" data-dismiss="modal" class="rounded btn btn-light-primary">الغاء</button>
+    </div>
+</form>
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+<script>
+    PageLoadActions();
+</script>*@
+
