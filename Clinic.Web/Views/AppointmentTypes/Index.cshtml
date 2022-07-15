@@ -3,24 +3,27 @@
 }
 
 @section Css{
+    <style>
+        .active>.page-link {
+            color: #ffffff!important;
+            background-color: #8b8b8b!important;
+            border-color: #dfdfdf!important;
+        }
+    </style>
 }
 
 <div class="row">
     <div class="col-12">
         <div class="card mb-4">
             <div class="card-header pb-0">
-                <h6>Authors table</h6>
+                <h6>أنواع الحجوزات في النظام</h6>
             </div>
-            <div class="card-body px-0 pt-0 pb-2">
+            <div class="card-body p-3">
                 <table class="table align-items-center mb-0" id="dataTableId">
                     <thead>
                         <tr>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
+                            <th class="text-secondary text-xxl-end font-weight-bolder ">نوع الحجز</th>
+                            <th class="text-secondary text-xxl-end font-weight-bolder ">ملاحظات</th>
                             <th class="text-secondary opacity-7"></th>
                         </tr>
                     </thead>
@@ -71,32 +74,23 @@
                     //"bSort": false,
                     serverSide: true,
                     columns: [
-                        { data: 'UserName' },
-                        { data: 'FullName' },
-                        { data: 'IdentityNumber' },
-                        { data: 'Mobile' },
                         {
                             "render": function (data, type, row) {
-                                var types = {
-                                    true: "فعال",
-                                    false: "غير فعال"
-                                };
-                                return "<span style='width: 110px;'><span class='rounded m-badge m-badge--success m-badge--wide'><b>" + types[row["IsActive"]] + "</b></span></span>";
+                                return '<span class="badge badge-sm bg-gradient-success">' + row["TypeName"] + '</span>';
                             }
                         },
-                        { data: 'RoleType' },
+                        { data: 'Note' },
                         {
                             name: 'buttons', "render": function (data, type, row) {
-                                return ""
-                                    + "<a title='تعديل المسؤول' href='/Users/Create?id=" + row["Id"] + "' class='PopUp btn btn-sm m-btn m-btn--icon icon-size-dt'><i class='fa fa-edit icon-size-dt'></i></a>"
-                                    + "<a title='حذف المسؤول' tname='#dataTableId' href='/Users/Delete?id=" + row["Id"] + "' class='Confirm btn text-danger btn-sm m-btn m-btn--icon icon-size-dt'><i class='flaticon-delete-1 icon-size-dt'></i></a>"
+                                return ''
+                                    + '<a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">Edit</a>';
                             }
                         }
                     ],
                     ajax: {
                         type: "POST",
                         contentType: "application/json",
-                        url: '/Users/GetAll',
+                        url: '/AppointmentTypes/GetAll',
                         data: function (d) {
                             d.SearchKey = ($("[name=SearchKey]").val());
                             return JSON.stringify(d);

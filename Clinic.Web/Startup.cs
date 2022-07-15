@@ -132,7 +132,7 @@ namespace Clinic.Web
             app.UseDeveloperExceptionPage();
             if (env.IsDevelopment())
             {
-                app.MigrateAndSeedDb(development: true);
+                //app.MigrateAndSeedDb(development: true);
             }
             else
             {
