@@ -101,15 +101,16 @@ namespace Clinic.Web.Controllers
         //    return Content(ShowMessage.FailedResult(), "application/json");
         //}
 
-        //[HttpGet]
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    var item = await _context.Materials.FindAsync(id);
-        //    _context.Materials.Remove(item);
-        //    await _context.SaveChangesAsync();
-        //    return Content(ShowMessage.DeleteSuccessResult(), "application/json");
-        //}
-
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var item = await _appointmentsService.Get(id);
+            if (item is null) 
+                return Content(ShowMessage.NotExistResult(), "application/json");
+            if (await _appointmentsService.Delete(item)) 
+                return Content(ShowMessage.DeleteSuccessResult(), "application/json");
+            return Content(ShowMessage.FailedResult(), "application/json");
+        }
 
     }
 }

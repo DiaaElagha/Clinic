@@ -4,11 +4,12 @@
 
 @section Css{
     <style>
-        .active>.page-link {
-            color: #ffffff!important;
-            background-color: #8b8b8b!important;
-            border-color: #dfdfdf!important;
+        .active > .page-link {
+            color: #ffffff !important;
+            background-color: #8b8b8b !important;
+            border-color: #dfdfdf !important;
         }
+
     </style>
 }
 
@@ -16,7 +17,14 @@
     <div class="col-12">
         <div class="card mb-4">
             <div class="card-header pb-0">
-                <h6>أنواع الحجوزات في النظام</h6>
+                <div class="row">
+                    <div class="col-md-9">
+                        <h4>أنواع الحجوزات في النظام</h4>
+                    </div>
+                    <div class="col-md-3 text-start">
+                        <a class="btn bg-gradient-primary" href="~/AppointmentTypes/Create">إضافة جديد</a>
+                    </div>
+                </div>
             </div>
             <div class="card-body p-3">
                 <table class="table align-items-center mb-0" id="dataTableId">
@@ -52,12 +60,23 @@
                 {
                     language: {
                         aria: {
-                            sortAscending: ": فعال لترتيب العمود تصاعديا", sortDescending: ": فعال لترتيب العمود تنازليا"
+                            sortAscending: ": فعال لترتيب العمود تصاعديا",
+                            sortDescending: ": فعال لترتيب العمود تنازليا"
+                        },
+                        emptyTable: "لا يوجد بيانات لعرضها",
+                        info: "عرض _START_ الى _END_ من _TOTAL_ صف",
+                        infoEmpty: "لا يوجد نتائج لعرضها",
+                        infoFiltered: "(filtered1 من _MAX_ اجمالي صفوف)",
+                        lengthMenu: "_MENU_",
+                        search: "بحث",
+                        zeroRecords: "لا يوجد نتائج لعرضها",
+                        paginate: {
+                            sFirst: '<i class="fa fa-fw fa-angle-double-right">',
+                            sLast: '<i class="fa fa-fw fa-angle-double-left">',
+                            sNext: '<i class="fa fa-fw fa-angle-left">',
+                            sPrevious: '<i class="fa fa-fw fa-angle-right">',
                         }
-                        , emptyTable: "لا يوجد بيانات لعرضها", info: "عرض _START_ الى _END_ من _TOTAL_ صف", infoEmpty: "لا يوجد نتائج لعرضها", infoFiltered: "(filtered1 من _MAX_ اجمالي صفوف)", lengthMenu: "_MENU_", search: "بحث", zeroRecords: "لا يوجد نتائج لعرضها",
-                        paginate: { sFirst: "الاول", sLast: "الاخير", sNext: "التالي", sPrevious: "السابق" }
                     },
-
                     "dom":
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-4'i><'col-sm-4 text-center'l><'col-sm-4'p>>",
@@ -83,7 +102,8 @@
                         {
                             name: 'buttons', "render": function (data, type, row) {
                                 return ''
-                                    + '<a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">Edit</a>';
+                                    + '<a href="/AppointmentTypes/Edit/1" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-edit fa-lg"></i></a>'
+                                    + '<a href="/AppointmentTypes/Delete/' + row["Id"] + '" class="text-secondary font-weight-bold text-danger text-xs me-2" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-trash fa-lg"></i></a>';
                             }
                         }
                     ],
