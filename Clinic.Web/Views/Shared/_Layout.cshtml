@@ -8,23 +8,28 @@
     <title>
         Soft UI Dashboard by Creative Tim
     </title>
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <!-- Fonts and icons -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet" />
     <!-- Nucleo Icons -->
     <link href="~/panel/assets/css/nucleo-icons.css" rel="stylesheet" />
     <link href="~/panel/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="~/panel/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="~/panel/assets/css/soft-ui-dashboard.css?v=1.0.6" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Cairo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal" rel="stylesheet">
     <style>
         input, textarea, small, button, a, body, h1, h2, h3, h4, h5, h6, label, b, s, li, th, td, table, button, select, option.legend, span, p {
-            font-family: Cairo !important;
+            font-family: Tajawal !important;
+        }
+
+        .navbar-collapse {
+            height: 100% !important;
         }
     </style>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css" />
+    <link href="~/nprogress-master/nprogress.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 
     @await RenderSectionAsync("Css", required: false)
 </head>
@@ -34,7 +39,7 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute start-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html " target="_blank">
-                <img src="~/panel/assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="me-1 font-weight-bold">Soft UI Dashboard</span>
             </a>
         </div>
@@ -62,7 +67,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="~/panel/pages/tables.html">
+                    <a class="nav-link " href="~/AppointmentTypes/Index">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center ms-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <title>office</title>
@@ -208,21 +213,21 @@
                 </li>
             </ul>
         </div>
-        <div class="sidenav-footer mx-3 ">
-            <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">
-                <div class="full-background" style="background-image: url('~/panel/assets/img/curved-images/white-curved.jpg')"></div>
-                <div class="card-body text-start p-3 w-100">
-                    <div class="icon icon-shape icon-sm bg-white shadow text-center mb-3 d-flex align-items-center justify-content-center border-radius-md">
-                        <i class="ni ni-diamond text-dark text-gradient text-lg top-0" aria-hidden="true" id="sidenavCardIcon"></i>
-                    </div>
-                    <div class="docs-info">
-                        <h6 class="text-white up mb-0 text-end">تحتاج مساعدة؟</h6>
-                        <p class="text-xs font-weight-bold text-end">يرجى التواصل مع الدعم الفني</p>
-                        <a href="~/Support/OpenTicket" target="_blank" class="btn btn-white btn-sm w-100 mb-0">تواصل</a>
+        @*<div class="sidenav-footer mx-3 ">
+                <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">
+                    <div class="full-background" style="background-image: url('~/panel/assets/img/curved-images/white-curved.jpg')"></div>
+                    <div class="card-body text-start p-3 w-100">
+                        <div class="icon icon-shape icon-sm bg-white shadow text-center mb-3 d-flex align-items-center justify-content-center border-radius-md">
+                            <i class="ni ni-diamond text-dark text-gradient text-lg top-0" aria-hidden="true" id="sidenavCardIcon"></i>
+                        </div>
+                        <div class="docs-info">
+                            <h6 class="text-white up mb-0 text-end">تحتاج مساعدة؟</h6>
+                            <p class="text-xs font-weight-bold text-end">يرجى التواصل مع الدعم الفني</p>
+                            <a href="~/Support/OpenTicket" target="_blank" class="btn btn-white btn-sm w-100 mb-0">تواصل</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div>*@
     </aside>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg overflow-x-hidden">
 
@@ -276,7 +281,7 @@
                                     <a class="dropdown-item border-radius-md" href="javascript:;">
                                         <div class="d-flex py-1">
                                             <div class="my-auto">
-                                                <img src="~/panel/assets/img/team-2.jpg" class="avatar avatar-sm  ms-3 ">
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" class="avatar avatar-sm  ms-3 ">
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="text-sm font-weight-normal mb-1">
@@ -401,393 +406,68 @@
                     <input class="form-check-input mt-1 float-end me-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
                 </div>
                 <hr class="horizontal dark my-sm-4">
-                <a class="btn bg-gradient-dark w-100" href="https://www.creative-tim.com/product/soft-ui-dashboard">Free Download</a>
                 <a class="btn btn-outline-dark w-100" href="https://www.creative-tim.com/learning-lab/bootstrap/license/soft-ui-dashboard">View documentation</a>
-                <div class="w-100 text-center">
-                    <a class="github-button" href="https://github.com/creativetimofficial/soft-ui-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star creativetimofficial/soft-ui-dashboard on GitHub">Star</a>
-                    <h6 class="mt-3">Thank you for sharing!</h6>
-                    <a href="https://twitter.com/intent/tweet?text=Check%20Soft%20UI%20Dashboard%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23bootstrap5&amp;url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fsoft-ui-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
-                        <i class="fab fa-twitter me-1" aria-hidden="true"></i> Tweet
-                    </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/soft-ui-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
-                        <i class="fab fa-facebook-square me-1" aria-hidden="true"></i> Share
-                    </a>
+               
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="PopUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg rounded" role="document">
+            <div class="modal-content rounded">
+                <div class="modal-header rounded">
+                    <h5 class="modal-title" style="font-weight:bolder"></h5>
+                    <button type="button" data-bs-dismiss="modal" aria-label="Close" style="background-color: #ffffff; border: none; cursor: pointer ">
+                        <i class="fa fa-times" style="margin-left: 10px; color: #344767; font-size: 23px; background-color: #ffffff"> </i>
+                    </button>
+                </div>
+                <div class="modal-body">
+
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="Confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm rounded" role="document">
+            <div class="modal-content rounded">
+                <div class="modal-header rounded">
+                    <h3 class="modal-title" id="exampleModalLabel">تحذير</h3>
+                </div>
+                <div class="modal-body">
+                    <p style="font-size: 18px">هل انت متأكد من استمرار العملية ؟</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">الغاء</button>
+                    <button type="button" class="btn btn-danger rounded">نعم</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--   Core JS Files   -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <script src="~/panel/assets/js/core/popper.min.js"></script>
     <script src="~/panel/assets/js/core/bootstrap.min.js"></script>
     <script src="~/panel/assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="~/panel/assets/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="~/panel/assets/js/plugins/fullcalendar.min.js"></script>
-    <script>
-        var ctx = document.getElementById("chart-bars").getContext("2d");
 
-        new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Sales",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    borderRadius: 4,
-                    borderSkipped: false,
-                    backgroundColor: "#fff",
-                    data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
-                    maxBarThickness: 6
-                },],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                        },
-                        ticks: {
-                            suggestedMin: 0,
-                            suggestedMax: 500,
-                            beginAtZero: true,
-                            padding: 15,
-                            font: {
-                                size: 14,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                            color: "#fff"
-                        },
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false
-                        },
-                        ticks: {
-                            display: false
-                        },
-                    },
-                },
-            },
-        });
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="~/panel/assets/js/soft-ui-dashboard.min.js?v=1.0.6"></script>
 
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="~/nprogress-master/nprogress.js"></script>
+    <script src="~/js/site.js"></script>
 
-        var ctx2 = document.getElementById("chart-line").getContext("2d");
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
-        var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-        gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
-        gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-        gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
-
-        var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-        gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
-        gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-        gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
-
-        new Chart(ctx2, {
-            type: "line",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Mobile apps",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#cb0c9f",
-                    borderWidth: 3,
-                    backgroundColor: gradientStroke1,
-                    fill: true,
-                    data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-                    maxBarThickness: 6
-
-                },
-                {
-                    label: "Websites",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#3A416F",
-                    borderWidth: 3,
-                    backgroundColor: gradientStroke2,
-                    fill: true,
-                    data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
-                    maxBarThickness: 6
-                },
-                ],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            padding: 10,
-                            color: '#b2b9bf',
-                            font: {
-                                size: 11,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#b2b9bf',
-                            padding: 20,
-                            font: {
-                                size: 11,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                },
-            },
-        });
-    </script>
-    <script src="~/panel/assets/js/plugins/choices.min.js"></script>
-    <script src="~/panel/assets/js/plugins/chartjs.min.js"></script>
-    <script>
-        var ctx1 = document.getElementById("chart-widgets-1").getContext("2d");
-
-        var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
-
-        gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.02)');
-        gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-        gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
-
-        var ctx2 = document.getElementById("chart-widgets-2").getContext("2d");
-
-        var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-        gradientStroke2.addColorStop(1, 'rgba(37,47,64,0.05)');
-        gradientStroke2.addColorStop(0.2, 'rgba(37,47,64,0.0)');
-        gradientStroke2.addColorStop(0, 'rgba(37,47,64,0)'); //purple colors
-
-        new Chart(ctx1, {
-            type: "line",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Calories",
-                    tension: 0.5,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#252f40",
-                    borderWidth: 2,
-                    backgroundColor: gradientStroke2,
-                    data: [50, 45, 60, 60, 80, 65, 90, 80, 100],
-                    maxBarThickness: 6,
-                    fill: true
-                }],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                        },
-                        ticks: {
-                            display: false
-                        }
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                        },
-                        ticks: {
-                            display: false
-                        }
-                    },
-                },
-            },
-        });
-
-        new Chart(ctx2, {
-            type: "line",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Income",
-                    tension: 0.5,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#252f40",
-                    borderWidth: 2,
-                    backgroundColor: gradientStroke2,
-                    data: [50, 45, 60, 60, 80, 65, 90, 80, 100],
-                    maxBarThickness: 6,
-                    fill: true
-                }],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                        },
-                        ticks: {
-                            display: false
-                        }
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                        },
-                        ticks: {
-                            display: false
-                        }
-                    },
-                },
-            },
-        });
-
-        var ctx3 = document.getElementById("chart-line-widgets-2").getContext("2d");
-
-        var gradientStroke3 = ctx3.createLinearGradient(0, 230, 0, 50);
-
-        gradientStroke3.addColorStop(1, 'rgba(33,82,255,0.1)');
-        gradientStroke3.addColorStop(0.2, 'rgba(33,82,255,0.0)');
-        gradientStroke3.addColorStop(0, 'rgba(33,82,255,0)'); //purple colors
-
-        new Chart(ctx3, {
-            type: "line",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Tasks",
-                    tension: 0.3,
-                    pointRadius: 2,
-                    pointBackgroundColor: "#cb0c9f",
-                    borderColor: "#cb0c9f",
-                    borderWidth: 2,
-                    backgroundColor: gradientStroke1,
-                    data: [40, 45, 42, 41, 40, 43, 40, 42, 39],
-                    maxBarThickness: 6,
-                    fill: true
-                }],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                        },
-                        ticks: {
-                            display: false
-                        }
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                        },
-                        ticks: {
-                            color: '#252f40',
-                            padding: 10
-                        }
-                    },
-                },
-            },
-        });
-    </script>
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -797,15 +477,6 @@
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
     </script>
-    <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="~/panel/assets/js/soft-ui-dashboard.min.js?v=1.0.6"></script>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

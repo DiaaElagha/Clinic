@@ -2,6 +2,7 @@
 using Clinic.Core.Entities;
 using Clinic.Infrastructure.Services;
 using Clinic.Web.Helper;
+using Clinic.Web.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +17,7 @@ namespace Clinic.Web.Controllers
         private IAppointmentsService _appointmentsService;
         public AppointmentTypesController(
             UserManager<AppUser> systemUsers,
-            IMapper mapper, 
+            IMapper mapper,
             IAppointmentsService appointmentsService) : base(systemUsers, mapper)
         {
             _appointmentsService = appointmentsService;
@@ -53,20 +54,24 @@ namespace Clinic.Web.Controllers
             return Json(result);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Create(int? id)
-        //{
-        //    if (id != null)
-        //    {
-        //        var item = await _context.Materials.FindAsync(id.Value);
-        //        if (item != null)
-        //        {
-        //            var model = _mapper.Map<MaterialVM>(item);
-        //            return View(model);
-        //        }
-        //    }
-        //    return View();
-        //}
+        [HttpGet]
+        public async Task<IActionResult> CreateOrEdit(int? id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateOrEdit(AppointmentTypeVM model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            //ModelState.AddModelError("TypeName","Hi whats up");
+            //return View(model);
+            return Content(ShowMessage.AddSuccessResult(), "application/json");
+        }
 
         //[HttpPost]
         //[ValidateAntiForgeryToken]
@@ -105,9 +110,9 @@ namespace Clinic.Web.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var item = await _appointmentsService.Get(id);
-            if (item is null) 
+            if (item is null)
                 return Content(ShowMessage.NotExistResult(), "application/json");
-            if (await _appointmentsService.Delete(item)) 
+            if (await _appointmentsService.Delete(item))
                 return Content(ShowMessage.DeleteSuccessResult(), "application/json");
             return Content(ShowMessage.FailedResult(), "application/json");
         }

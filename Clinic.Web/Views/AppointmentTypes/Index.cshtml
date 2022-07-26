@@ -9,7 +9,6 @@
             background-color: #8b8b8b !important;
             border-color: #dfdfdf !important;
         }
-
     </style>
 }
 
@@ -19,10 +18,14 @@
             <div class="card-header pb-0">
                 <div class="row">
                     <div class="col-md-9">
-                        <h4>أنواع الحجوزات في النظام</h4>
+                        <h3 class="text-primary">
+                            أنواع الحجوزات في النظام
+                        </h3>
                     </div>
                     <div class="col-md-3 text-start">
-                        <a class="btn bg-gradient-primary" href="~/AppointmentTypes/Create">إضافة جديد</a>
+                        <a class="btn bg-gradient-primary PopUp" href="javascript:void(0)" 
+                           data-title="إضافة حجز جديد"
+                           data-link="/AppointmentTypes/CreateOrEdit">إضافة جديد</a>
                     </div>
                 </div>
             </div>
@@ -42,7 +45,9 @@
     </div>
 </div>
 @section Scripts{
+
     <script>
+
         $(function () {
             $(".DTForm").submit(function () {
                 BindDataTable();
@@ -56,67 +61,71 @@
         });
 
         function BindDataTable() {
-            oTable = $('#dataTableId').dataTable(
-                {
-                    language: {
-                        aria: {
-                            sortAscending: ": فعال لترتيب العمود تصاعديا",
-                            sortDescending: ": فعال لترتيب العمود تنازليا"
-                        },
-                        emptyTable: "لا يوجد بيانات لعرضها",
-                        info: "عرض _START_ الى _END_ من _TOTAL_ صف",
-                        infoEmpty: "لا يوجد نتائج لعرضها",
-                        infoFiltered: "(filtered1 من _MAX_ اجمالي صفوف)",
-                        lengthMenu: "_MENU_",
-                        search: "بحث",
-                        zeroRecords: "لا يوجد نتائج لعرضها",
-                        paginate: {
-                            sFirst: '<i class="fa fa-fw fa-angle-double-right">',
-                            sLast: '<i class="fa fa-fw fa-angle-double-left">',
-                            sNext: '<i class="fa fa-fw fa-angle-left">',
-                            sPrevious: '<i class="fa fa-fw fa-angle-right">',
+            oTable = $('#dataTableId').dataTable({
+                language: {
+                    aria: {
+                        sortAscending: ": فعال لترتيب العمود تصاعديا",
+                        sortDescending: ": فعال لترتيب العمود تنازليا"
+                    },
+                    emptyTable: "لا يوجد بيانات لعرضها",
+                    info: "عرض _START_ الى _END_ من _TOTAL_ صف",
+                    infoEmpty: "لا يوجد نتائج لعرضها",
+                    infoFiltered: "(filtered1 من _MAX_ اجمالي صفوف)",
+                    lengthMenu: "_MENU_",
+                    search: "بحث",
+                    zeroRecords: "لا يوجد نتائج لعرضها",
+                    paginate: {
+                        sFirst: '<i class="fa fa-fw fa-angle-double-right">',
+                        sLast: '<i class="fa fa-fw fa-angle-double-left">',
+                        sNext: '<i class="fa fa-fw fa-angle-left">',
+                        sPrevious: '<i class="fa fa-fw fa-angle-right">',
+                    }
+                },
+                "dom":
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-4'i><'col-sm-4 text-center'l><'col-sm-4'p>>",
+                "iDisplayLength": 10,
+                "sPaginationType": "full_numbers",
+                "bFilter": false,
+                "bDestroy": true,
+                "bSort": false,
+                "bStateSave": false,
+                "bLengthChange": true,
+                "columnDefs": [{
+                    "orderable": false
+                }],
+                //"bSort": false,
+                serverSide: true,
+                columns: [
+                    //{
+                    //    "render": function (data, type, row) {
+                    //        return '<span class="badge badge-sm bg-gradient-success">' + row["TypeName"] + '</span>';
+                    //    }
+                    //},
+                    {
+                        "render": function (data, type, row) {
+                            return '<b>' + row["TypeName"] + '</b>';
                         }
                     },
-                    "dom":
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-4'i><'col-sm-4 text-center'l><'col-sm-4'p>>",
-                    "iDisplayLength": 10,
-                    "sPaginationType": "full_numbers",
-                    "bFilter": false,
-                    "bDestroy": true,
-                    "bSort": false,
-                    "bStateSave": true,
-                    "bLengthChange": true,
-                    "columnDefs": [{
-                        "orderable": false
-                    }],
-                    //"bSort": false,
-                    serverSide: true,
-                    columns: [
-                        {
-                            "render": function (data, type, row) {
-                                return '<span class="badge badge-sm bg-gradient-success">' + row["TypeName"] + '</span>';
-                            }
-                        },
-                        { data: 'Note' },
-                        {
-                            name: 'buttons', "render": function (data, type, row) {
-                                return ''
-                                    + '<a href="/AppointmentTypes/Edit/1" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-edit fa-lg"></i></a>'
-                                    + '<a href="/AppointmentTypes/Delete/' + row["Id"] + '" class="text-secondary font-weight-bold text-danger text-xs me-2" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-trash fa-lg"></i></a>';
-                            }
-                        }
-                    ],
-                    ajax: {
-                        type: "POST",
-                        contentType: "application/json",
-                        url: '/AppointmentTypes/GetAll',
-                        data: function (d) {
-                            d.SearchKey = ($("[name=SearchKey]").val());
-                            return JSON.stringify(d);
+                    { data: 'Note' },
+                    {
+                        name: 'buttons', "render": function (data, type, row) {
+                            return ''
+                                + '<a href="javascript:void(0)" data-link="/AppointmentTypes/Edit/1" class="PopUp text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-edit fa-lg"></i></a>'
+                                + '<a href="javascript:void(0)" data-link="/AppointmentTypes/Delete/' + row["Id"] + '" tname="#dataTableId" class="Confirm text-secondary font-weight-bold text-danger text-xs me-2" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-trash fa-lg"></i></a>';
                         }
                     }
-                });
+                ],
+                ajax: {
+                    type: "POST",
+                    contentType: "application/json",
+                    url: '/AppointmentTypes/GetAll',
+                    data: function (d) {
+                        d.SearchKey = ($("[name=SearchKey]").val());
+                        return JSON.stringify(d);
+                    }
+                }
+            });
         }
 
     </script>
