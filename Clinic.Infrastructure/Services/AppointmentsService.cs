@@ -45,12 +45,30 @@ namespace Clinic.Infrastructure.Services
             var item = await _db.AppointmentTypes.SingleOrDefaultAsync(x => x.Id == id);
             return item;
         }
+
+        public async Task<AppointmentType> AddAppointmentType(string userId, AppointmentType item)
+        {
+            item.CreatedBy = userId;
+            await _db.AppointmentTypes.AddAsync(item);
+            await _db.SaveChangesAsync();
+            return item;
+        }
+
+        public async Task<AppointmentType> UpdateAppointmentType(string userId, AppointmentType item)
+        {
+            item.CreatedBy = userId;
+            _db.AppointmentTypes.Update(item);
+            await _db.SaveChangesAsync();
+            return item;
+        }
     }
     public interface IAppointmentsService
     {
+        Task<AppointmentType> AddAppointmentType(string userId, AppointmentType item);
         Task<bool> Delete(AppointmentType item);
         Task<AppointmentType> Get(int id);
         Task<List<Appointment>> GetAppointments();
         Task<(List<AppointmentType> AppointmentTypes, int CountItems)> GetAppointmentsTypes(int skip, int take, string s = null);
+        Task<AppointmentType> UpdateAppointmentType(string userId, AppointmentType item);
     }
 }

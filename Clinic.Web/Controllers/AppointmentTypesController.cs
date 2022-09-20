@@ -57,54 +57,41 @@ namespace Clinic.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateOrEdit(int? id)
         {
+            if (id != null)
+            {
+                var item = await _appointmentsService.Get(id.Value);
+                if (item is not null)
+                {
+                    var model = _mapper.Map<AppointmentTypeVM>(item);
+                    return View(model);
+                }
+            }
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateOrEdit(AppointmentTypeVM model)
+        public async Task<IActionResult> CreateOrEdit(int? id, AppointmentTypeVM model)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) return View(model);
+            if (id != null)
             {
-                return View(model);
+                var item = await _appointmentsService.Get(id.Value);
+                if (item is not null)
+                {
+                    _mapper.Map(model, item);
+                    await _appointmentsService.UpdateAppointmentType(UserId, item);
+                    return Content(ShowMessage.EditSuccessResult(), "application/json");
+                }
             }
-            //ModelState.AddModelError("TypeName","Hi whats up");
-            //return View(model);
+            else
+            {
+                var objNew = _mapper.Map<AppointmentType>(model);
+                await _appointmentsService.AddAppointmentType(UserId, objNew);
+                return Content(ShowMessage.AddSuccessResult(), "application/json");
+            }
             return Content(ShowMessage.AddSuccessResult(), "application/json");
         }
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create(int? id, MaterialVM model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(model);
-        //    }
-        //    if (id != null)
-        //    {
-        //        var item = await _context.Materials.FindAsync(id.Value);
-        //        if (item != null)
-        //        {
-        //            item.TitleAR = model.TitleAR;
-        //            item.TitleEN = model.TitleEN;
-        //            item.UpdatedBy = UserId;
-        //            item.UpdatedAt = DateTime.Now;
-        //            _context.Materials.Update(item);
-        //             await _context.SaveChangesAsync();
-        //            return Content(ShowMessage.EditSuccessResult(), "application/json");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        var objNew = _mapper.Map<Material>(model);
-        //        objNew.CreatedBy = UserId;
-        //        await _context.Materials.AddAsync(objNew);
-        //        await _context.SaveChangesAsync();
-        //        return Content(ShowMessage.AddSuccessResult(), "application/json");
-        //    }
-        //    return Content(ShowMessage.FailedResult(), "application/json");
-        //}
 
         [HttpGet]
         public async Task<IActionResult> Delete(int id)

@@ -94,6 +94,8 @@
                 "columnDefs": [{
                     "orderable": false
                 }],
+                scrollY: '500px',
+                scrollCollapse: true,
                 //"bSort": false,
                 serverSide: true,
                 columns: [
@@ -111,7 +113,7 @@
                     {
                         name: 'buttons', "render": function (data, type, row) {
                             return ''
-                                + '<a href="javascript:void(0)" data-link="/AppointmentTypes/Edit/1" class="PopUp text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-edit fa-lg"></i></a>'
+                                + '<a href="javascript:void(0)" data-link="/AppointmentTypes/CreateOrEdit?id=' + row["Id"] + '" class="PopUp text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-edit fa-lg"></i></a>'
                                 + '<a href="javascript:void(0)" data-link="/AppointmentTypes/Delete/' + row["Id"] + '" tname="#dataTableId" class="Confirm text-secondary font-weight-bold text-danger text-xs me-2" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-trash fa-lg"></i></a>';
                         }
                     }

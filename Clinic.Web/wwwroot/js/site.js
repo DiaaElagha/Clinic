@@ -11,28 +11,30 @@
 
 $(document).on('submit', '.ajaxForm', function (e) {
     e.preventDefault();
-
+    let _form = $(this);
     let _url = $(this).attr('action');
-    console.log(_url);
     $.ajax({
         type: 'POST',
         url: _url,
-        data: $(this).serialize(),
+        data: _form.serialize(),
         success: function (json) {
-            if (!$(this).isValid) {
-                $('#PopUp .modal-body').html(json);
-            }
-            else if (json.status == 1) {
-                var tname = $(this).attr("tname");
-                var fname = $(this).attr("fname");
+            //if (!$(this).isValid) {
+            //    console.log(json.status + "ppp");
+            //    $('#PopUp .modal-body').html(json);
+            //}
+            /*else*/
+            if (json.status == 1) {
+                var tname = _form.attr("tname");
+                var fname = _form.attr("fname");
                 if (tname != null) {
+                    console.log(json.status + "ppp" + tname);
                     RefreshData(tname);
                 }
                 if (fname != null) {
                     eval(fname);
                 }
                 if (!$("#tblItems").hasClass("autohide")) {
-                    $(this).resetForm();
+                    //$(this).resetForm();
                     $("#tblItems tbody tr").remove();
                     $("#tblItems").addClass("hidden").next().show();
                 }
@@ -40,7 +42,6 @@ $(document).on('submit', '.ajaxForm', function (e) {
                     $(".select2").val('').change();
                 }
             }
-            console.log(json.close);
             if (json.msg != null)
                 ShowMessage(json.msg);
             if (json.redirect != null)
@@ -80,7 +81,6 @@ $(document).on("click", ".Confirm", function () {
 $("#Confirm .btn-danger").click(function () {
     var tname = $(this).attr("tname");
     var url = $(this).attr("data-link");
-    console.log(url);
     $.ajax({
         url: url,
         success: function (json) {
@@ -136,7 +136,6 @@ toastr.options = {
 };
 
 function ShowMessage(msg) {
-    console.log(msg);
     var cls = "info";
     if (msg.indexOf("s:") == 0) { cls = "success"; msg = msg.substring(2); }
     if (msg.indexOf("w:") == 0) { cls = "warning"; msg = msg.substring(2); }
