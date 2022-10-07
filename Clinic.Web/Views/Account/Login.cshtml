@@ -2,98 +2,58 @@
 
 @{
     ViewData["Title"] = "تسجيل الدخول";
-    Layout = "_LayoutAuth";
+    Layout = "_Layout_Auth";
 }
 @section Css {
     <style>
-
-        body {
-            background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(252,252,252,1) 32%, rgba(228,228,228,1) 100%);
-        }
-
-        .login {
-            width: 360px;
-            padding: 8% 0 0;
-            margin: auto;
-            font-family: 'Comfortaa', cursive;
-        }
-
-        .form {
-            position: relative;
-            z-index: 1;
-            background: #FFFFFF;
-            border-radius: 10px;
-            max-width: 360px;
-            margin: 0 auto 100px;
-            padding: 45px;
-            text-align: center;
-        }
-
-            .form input {
-                outline: 0;
-                background: #f2f2f2;
-                width: 100%;
-                border: 0;
-                border-radius: 5px;
-                margin: 0 15px 0 0;
-                padding: 15px;
-                box-sizing: border-box;
-                font-size: 14px;
-                font-family: 'Comfortaa', cursive;
-            }
-
-                .form input:focus {
-                    background: #dbdbdb;
-                }
-
-            .form button {
-                font-family: 'Comfortaa', cursive;
-                text-transform: uppercase;
-                outline: 0;
-                background: #964f13;
-                width: 100%;
-                border: 0;
-                border-radius: 5px;
-                padding: 15px;
-                color: #FFFFFF;
-                font-size: 14px;
-                -webkit-transition: all 0.3 ease;
-                transition: all 0.3 ease;
-                cursor: pointer;
-            }
-
-                .form button:active {
-                    background: #964f13;
-                }
-
-            .form .material-icons {
-                font-size: 20px;
-                color: #964f13;
-            }
     </style>
 }
-<div class="login">
-    <div class="form">
-        <form class="login-form" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]">
-            <span class="material-icons">تسجيل الدخول لموقع المتحف</span>
-            <div class="form-group text-right mt-5">
-                <input asp-for="Username" placeholder="اسم المستخدم" dir="rtl" />
-                <span asp-validation-for="Username" class="text-danger"></span>
+
+<section>
+    <div class="page-header min-vh-75">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+                    <div class="card card-plain mt-8">
+                        <div class="card-header pb-0 text-left bg-transparent">
+                            <h3 class="font-weight-bolder text-info text-gradient">مرحبًا بعودتك</h3>
+                            <p class="mb-0">أدخل اسم المستخدم وكلمة المرور لتسجيل الدخول</p>
+                        </div>
+                        <div class="card-body">
+                            <form role="form" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <label>اسم المستخدم</label>
+                                <div class="mb-3">
+                                    <input asp-for="Username" class="form-control" placeholder="ادخل اسم المستخدم" aria-label="Email" aria-describedby="email-addon">
+                                    <span asp-validation-for="Username" class="text-danger"></span>
+                                </div>
+                                <label>كلمة المرور</label>
+                                <div class="mb-3">
+                                    <input asp-for="Password" class="form-control" placeholder="ادخل كلمة المرور" aria-label="Password" aria-describedby="password-addon">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input asp-for="RememberMe" class="form-check-input" type="checkbox" id="rememberMe">
+                                    <label class="form-check-label" for="rememberMe">تذكرني</label>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">تسجيل الدخول</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                            <p class="mb-4 text-sm mx-auto">
+                                هل نسيت كلمة المرور؟
+                                <a href="javascript:;" class="text-info text-gradient font-weight-bold">استرجاع</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group text-right">
-                <input asp-for="Password" placeholder="كلمة المرور" dir="rtl" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group text-right">
-                <span>تذكرني</span>
-                <label class="checkbox checkbox-primary">
-                    <input type="checkbox" asp-for="RememberMe">
-                </label>
-            </div>
-            <button type="submit">تسجيل دخول</button>
-        </form>
+        </div>
     </div>
-</div>
+</section>
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

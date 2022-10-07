@@ -6,7 +6,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="~/panel/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="~/panel/assets/img/favicon.png">
     <title>
-        Soft UI Dashboard by Creative Tim
+         @ViewBag.SiteName
     </title>
     <!-- Fonts and icons -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet" />
@@ -25,6 +25,10 @@
 
         .navbar-collapse {
             height: 100% !important;
+        }
+
+        .form-check {
+            position: absolute !important;
         }
     </style>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css" />
@@ -249,7 +253,7 @@
                     </div>
                     <ul class="navbar-nav me-auto ms-0 justify-content-end">
                         <li class="nav-item d-flex align-items-center">
-                            <a class="btn btn-outline-primary btn-sm mb-0 ms-3" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard">منشئ مضمنة</a>
+                            <a class="btn btn-outline-info btn-sm mb-0 ms-3" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard">منشئ مضمنة</a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
@@ -379,7 +383,7 @@
                 </div>
                 <a href="javascript:void(0)" class="switch-trigger background-color">
                     <div class="badge-colors my-2 text-end">
-                        <span class="badge filter bg-gradient-primary active" data-color="primary" onclick="sidebarColor(this)"></span>
+                        <span class="badge filter bg-gradient-info active" data-color="info" onclick="sidebarColor(this)"></span>
                         <span class="badge filter bg-gradient-dark" data-color="dark" onclick="sidebarColor(this)"></span>
                         <span class="badge filter bg-gradient-info" data-color="info" onclick="sidebarColor(this)"></span>
                         <span class="badge filter bg-gradient-success" data-color="success" onclick="sidebarColor(this)"></span>
@@ -393,8 +397,8 @@
                     <p class="text-sm">Choose between 2 different sidenav types.</p>
                 </div>
                 <div class="d-flex">
-                    <button class="btn bg-gradient-primary w-100 px-3 mb-2 active" data-class="bg-transparent" onclick="sidebarType(this)">Transparent</button>
-                    <button class="btn bg-gradient-primary w-100 px-3 mb-2 me-2" data-class="bg-white" onclick="sidebarType(this)">White</button>
+                    <button class="btn bg-gradient-info w-100 px-3 mb-2 active" data-class="bg-transparent" onclick="sidebarType(this)">Transparent</button>
+                    <button class="btn bg-gradient-info w-100 px-3 mb-2 me-2" data-class="bg-white" onclick="sidebarType(this)">White</button>
                 </div>
                 <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
                 <!-- Navbar Fixed -->
@@ -406,7 +410,7 @@
                 </div>
                 <hr class="horizontal dark my-sm-4">
                 <a class="btn btn-outline-dark w-100" href="https://www.creative-tim.com/learning-lab/bootstrap/license/soft-ui-dashboard">View documentation</a>
-               
+
             </div>
         </div>
     </div>

@@ -11,5 +11,11 @@ namespace Clinic.Web.Models.ViewModels
         [Display(Name = "اسم النوع")]
         [Required(ErrorMessage = "يرجى ادخال الاسم")]
         public string TypeName { get; set; }
+
+        [Display(Name = "الملاحظات")]
+        public string Note { get; set; }
+
+        [Display(Name = "السماح بالحجز")]
+        public bool AllowAppointment { get; set; }
     }
 }
