@@ -1,5 +1,4 @@
 ﻿using Clinic.Core.Constant;
-using Clinic.Core.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Clinic.Core.Entities
+namespace Clinic.Data.Entities
 {
     public class Appointment : BaseEntity
     {

@@ -1,10 +1,10 @@
-﻿using Clinic.Core.Entities;
+﻿using Clinic.Data.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Clinic.Infrastructure.Data
+namespace Clinic.Data.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<AppUser>
+    public class ApplicationDbContext : IdentityDbContext<AppUser, RoleUser, string>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -13,6 +13,16 @@ namespace Clinic.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Appointment>().HasQueryFilter(x => !x.IsDelete);
+            modelBuilder.Entity<AppointmentType>().HasQueryFilter(x => !x.IsDelete);
+            modelBuilder.Entity<Doctor>().HasQueryFilter(x => !x.IsDelete);
+            modelBuilder.Entity<Patient>().HasQueryFilter(x => !x.IsDelete);
+            modelBuilder.Entity<ReasonCancellation>().HasQueryFilter(x => !x.IsDelete);
+            modelBuilder.Entity<ContactUs>().HasQueryFilter(x => !x.IsDelete);
+            modelBuilder.Entity<ExternalRequest>().HasQueryFilter(x => !x.IsDelete);
+            modelBuilder.Entity<GeneralSettings>().HasQueryFilter(x => !x.IsDelete);
+
+
             base.OnModelCreating(modelBuilder);
         }
 

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Clinic.Core.Entities;
+using Clinic.Data.Entities;
 using Clinic.Web.Helper;
 using Clinic.Web.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;

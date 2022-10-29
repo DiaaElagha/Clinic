@@ -1,15 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
     <UserSecretsId>aspnet-Clinic.Web-8962AA51-A459-45A2-9F64-8D6A544AD875</UserSecretsId>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.15" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.15" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.15">
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -18,7 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Clinic.Core\Clinic.Core.csproj" />
     <ProjectReference Include="..\Clinic.Infrastructure\Clinic.Infrastructure.csproj" />
-    <ProjectReference Include="..\Clinic.Shared\Clinic.Shared.csproj" />
+    <ProjectReference Include="..\Clinic.Shared\Packages.csproj" />
   </ItemGroup>
 
   <ItemGroup>

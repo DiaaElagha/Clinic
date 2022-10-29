@@ -13,8 +13,8 @@ namespace Clinic.Core.Constant
         Anonymous = 0, 
         Client = 1,
         Employee = 2,
-        Admin = 2,
-        Secretary = 3,
+        Admin = 3,
+        Secretary = 4,
     }
     public enum AppointmentStatus
     {

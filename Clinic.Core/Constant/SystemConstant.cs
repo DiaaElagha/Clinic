@@ -8,12 +8,15 @@ namespace Clinic.Core.Constant
 {
     public static class SystemConstant
     {
+        public const string FormatDate = "MM/dd/yyyy";
+
         public static class SeedConst
         {
-            public static readonly string USER_NAME = "admin";
-            public static readonly string USER_ID = new Guid("c8ec217d-8de6-48b8-8437-e061634ed158").ToString();
-            public static readonly Dictionary<UserRoles, string> ROLES_IDS =
-                new()
+            public static string USER_NAME = "admin";
+            public static string USER_ID = new Guid("c8ec217d-8de6-48b8-8437-e061634ed158").ToString();
+            public static string USER_PASSWORD = "11Admin11$";
+            public static Dictionary<UserRoles, string> ROLES_IDS =
+                new ()
                 {
                     { UserRoles.Anonymous, new Guid("2c5e174e-3b0e-446f-86af-483d56fd7210").ToString() },
                     { UserRoles.Client, new Guid("95e8a441-5e60-4e7f-9526-6a88a667629b").ToString() },

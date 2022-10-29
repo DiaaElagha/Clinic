@@ -1,7 +1,6 @@
-﻿using Clinic.Core.Entities.Base;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-namespace Clinic.Core.Entities
+namespace Clinic.Data.Entities
 {
     public class Attachment : BaseEntity
     {

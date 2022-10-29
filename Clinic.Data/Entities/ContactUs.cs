@@ -1,7 +1,6 @@
-﻿using Clinic.Core.Entities.Base;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Clinic.Core.Entities
+namespace Clinic.Data.Entities
 {
     public class ContactUs : BaseEntity
     {

@@ -36,7 +36,7 @@
     @await RenderSectionAsync("Css", required: false)
 </head>
 
-<body class="">
+<body class="rtl">
 
     <main class="main-content  mt-0">
         @RenderBody()
@@ -81,7 +81,7 @@
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
     <script>
-        var win = navigator.platform.indexOf('Win') > -1;
+                var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
             var options = {
                 damping: '0.5'

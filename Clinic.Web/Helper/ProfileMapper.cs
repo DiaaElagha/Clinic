@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
-using Clinic.Core.Entities;
+using Clinic.Core.Dtos;
 using Clinic.Web.Models.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Clinic.Web.Helper
 {
@@ -12,7 +8,7 @@ namespace Clinic.Web.Helper
     {
         public ProfileMapper()
         {
-            CreateMap<AppointmentTypeVM, AppointmentType>().ReverseMap();
+            CreateMap<AppointmentTypeVM, AppointmentTypeDto>().ReverseMap();
         }
     }
 }

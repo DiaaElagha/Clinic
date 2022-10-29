@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Clinic.Core.Entities
+namespace Clinic.Data.Entities
 {
     public class AppUser : IdentityUser
     {

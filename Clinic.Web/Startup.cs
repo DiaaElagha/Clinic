@@ -1,20 +1,14 @@
-using System;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Options;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
-using Clinic.Infrastructure.Data;
-using Clinic.Core.Entities;
+using Clinic.Data.Data;
 using Clinic.Infrastructure.Services;
-using Microsoft.AspNetCore.Hosting;
+using Clinic.Data.Entities;
+using Clinic.Infrastructure.Mapper;
+using Clinic.Web.Helper;
 
 namespace Clinic.Web
 {
@@ -109,13 +103,20 @@ namespace Clinic.Web
             }).AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
 
-            services.AddTransient<IAppointmentsService, AppointmentsService>();
+            services.AddTransient<IAppointmentTypeService, AppointmentTypeService>();
+
+            services.AddControllersWithViews()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                });
 
             services.AddControllersWithViews()
                 .AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
             services.AddRazorPages().AddRazorRuntimeCompilation();
 
-            services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(typeof(MapperProfile));
+            services.AddAutoMapper(typeof(ProfileMapper));
 
             //services.AddSingleton(typeof(IStorageService), typeof(StorageService));
             //services.AddTransient(typeof(ISMSSender), typeof(SMSSender));
@@ -132,12 +133,12 @@ namespace Clinic.Web
             app.UseDeveloperExceptionPage();
             if (env.IsDevelopment())
             {
-                //app.MigrateAndSeedDb(development: true);
+                app.MigrateAndSeedDb(development: true);
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                app.MigrateAndSeedDb(development: true);
+                app.MigrateAndSeedDb();
             }
 
             app.UseHttpsRedirection();

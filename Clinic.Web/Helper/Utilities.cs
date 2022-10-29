@@ -111,21 +111,11 @@ namespace Clinic.Web.Helper
             var pages = new List<DataPage>();
             foreach (var item in pager.Pages)
             {
-                DataPage page;
-                if (item == currentPage)
+                DataPage page = new DataPage
                 {
-                    page = new DataPage
-                    {
-                        PageNumber = item,
-                        IsSelected = true,
-                    };
-                }
-                else
-                    page = new DataPage
-                    {
-                        PageNumber = item,
-                        IsSelected = false,
-                    };
+                    PageNumber = item,
+                    IsSelected = item == currentPage ? true : false,
+                };
                 pages.Add(page);
             }
 

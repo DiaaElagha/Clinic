@@ -1,7 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Clinic.Infrastructure.Migrations
+#nullable disable
+
+namespace Clinic.Data.Migrations
 {
     public partial class initdb : Migration
     {
@@ -62,14 +64,12 @@ namespace Clinic.Infrastructure.Migrations
                         name: "FK_AspNetUsers_AspNetUsers_CreatedBy",
                         column: x => x.CreatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_AspNetUsers_AspNetUsers_UpdatedBy",
                         column: x => x.UpdatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -115,14 +115,12 @@ namespace Clinic.Infrastructure.Migrations
                         name: "FK_AppointmentTypes_AspNetUsers_CreatedBy",
                         column: x => x.CreatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_AppointmentTypes_AspNetUsers_UpdatedBy",
                         column: x => x.UpdatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -233,14 +231,12 @@ namespace Clinic.Infrastructure.Migrations
                         name: "FK_Attachments_AspNetUsers_CreatedBy",
                         column: x => x.CreatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Attachments_AspNetUsers_UpdatedBy",
                         column: x => x.UpdatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -267,14 +263,12 @@ namespace Clinic.Infrastructure.Migrations
                         name: "FK_ContactUs_AspNetUsers_CreatedBy",
                         column: x => x.CreatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_ContactUs_AspNetUsers_UpdatedBy",
                         column: x => x.UpdatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -295,8 +289,7 @@ namespace Clinic.Infrastructure.Migrations
                         name: "FK_Doctors_AspNetUsers_CreatedBy",
                         column: x => x.CreatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Doctors_AspNetUsers_DoctorId",
                         column: x => x.DoctorId,
@@ -307,8 +300,7 @@ namespace Clinic.Infrastructure.Migrations
                         name: "FK_Doctors_AspNetUsers_UpdatedBy",
                         column: x => x.UpdatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -335,14 +327,12 @@ namespace Clinic.Infrastructure.Migrations
                         name: "FK_ExternalRequests_AspNetUsers_CreatedBy",
                         column: x => x.CreatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_ExternalRequests_AspNetUsers_UpdatedBy",
                         column: x => x.UpdatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -366,14 +356,12 @@ namespace Clinic.Infrastructure.Migrations
                         name: "FK_GeneralSettings_AspNetUsers_CreatedBy",
                         column: x => x.CreatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_GeneralSettings_AspNetUsers_UpdatedBy",
                         column: x => x.UpdatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -394,8 +382,7 @@ namespace Clinic.Infrastructure.Migrations
                         name: "FK_Patients_AspNetUsers_CreatedBy",
                         column: x => x.CreatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Patients_AspNetUsers_PatientId",
                         column: x => x.PatientId,
@@ -406,8 +393,7 @@ namespace Clinic.Infrastructure.Migrations
                         name: "FK_Patients_AspNetUsers_UpdatedBy",
                         column: x => x.UpdatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -431,14 +417,12 @@ namespace Clinic.Infrastructure.Migrations
                         name: "FK_ReasonsCancellation_AspNetUsers_CreatedBy",
                         column: x => x.CreatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_ReasonsCancellation_AspNetUsers_UpdatedBy",
                         column: x => x.UpdatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -470,38 +454,32 @@ namespace Clinic.Infrastructure.Migrations
                         name: "FK_Appointments_AppointmentTypes_AppointmentTypeId",
                         column: x => x.AppointmentTypeId,
                         principalTable: "AppointmentTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Appointments_AspNetUsers_CreatedBy",
                         column: x => x.CreatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Appointments_AspNetUsers_DoctorBy",
                         column: x => x.DoctorBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Appointments_AspNetUsers_PatientBy",
                         column: x => x.PatientBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Appointments_AspNetUsers_UpdatedBy",
                         column: x => x.UpdatedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Appointments_ReasonsCancellation_ReasonCancellationId",
                         column: x => x.ReasonCancellationId,
                         principalTable: "ReasonsCancellation",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(

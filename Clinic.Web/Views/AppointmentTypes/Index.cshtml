@@ -24,7 +24,7 @@
                     </div>
                     <div class="col-md-3 text-start">
                         <a class="btn bg-gradient-info PopUp" href="javascript:void(0)" 
-                           data-title="إضافة حجز جديد"
+                           data-title="إضافة نوع حجز جديد"
                            data-link="/AppointmentTypes/CreateOrEdit">إضافة جديد</a>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
                     {
                         name: 'buttons', "render": function (data, type, row) {
                             return ''
-                                + '<a href="javascript:void(0)" data-link="/AppointmentTypes/CreateOrEdit?id=' + row["Id"] + '" class="PopUp text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-edit fa-lg"></i></a>'
+                                + '<a href="javascript:void(0)" data-title="تعديل نوع الحجز" data-link="/AppointmentTypes/CreateOrEdit?id=' + row["Id"] + '" class="PopUp text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-edit fa-lg"></i></a>'
                                 + '<a href="javascript:void(0)" data-link="/AppointmentTypes/Delete/' + row["Id"] + '" tname="#dataTableId" class="Confirm text-secondary font-weight-bold text-danger text-xs me-2" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-trash fa-lg"></i></a>';
                         }
                     }

@@ -9,7 +9,7 @@ namespace Clinic.Web.Models.ViewModels
     public class AppointmentTypeVM
     {
         [Display(Name = "اسم النوع")]
-        [Required(ErrorMessage = "يرجى ادخال الاسم")]
+        [Required(ErrorMessage = "يرجى ادخال النوع")]
         public string TypeName { get; set; }
 
         [Display(Name = "الملاحظات")]

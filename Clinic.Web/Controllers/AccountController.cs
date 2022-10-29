@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
-using Clinic.Core.Entities;
+using Clinic.Data.Entities;
 using Clinic.Web.Models.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -18,8 +18,8 @@ namespace Clinic.Web.Controllers
     public class AccountController : BaseController
     {
         private readonly SignInManager<AppUser> _signInManager;
-        public AccountController(UserManager<AppUser> systemUsers, 
-            IMapper mapper, 
+        public AccountController(UserManager<AppUser> systemUsers,
+            IMapper mapper,
             SignInManager<AppUser> signInManager) : base(systemUsers, mapper)
         {
             _signInManager = signInManager;
@@ -32,7 +32,7 @@ namespace Clinic.Web.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return Redirect("/CHome");
+                return Redirect("/Home");
             }
             ViewData["ReturnUrl"] = returnUrl;
             return View();
@@ -76,12 +76,16 @@ namespace Clinic.Web.Controllers
                     };
 
                 await _signInManager.SignInWithClaimsAsync(user,
-                    new AuthenticationProperties { IsPersistent = model.RememberMe, ExpiresUtc = DateTimeOffset.Now.AddYears(1) }, claims);
+                    new AuthenticationProperties
+                    {
+                        IsPersistent = model.RememberMe,
+                        ExpiresUtc = DateTimeOffset.Now.AddYears(1)
+                    }, claims);
 
                 if (returnUrl != null)
                     return Redirect(returnUrl);
-                else 
-                    return Redirect("/CHome");
+                else
+                    return Redirect("/Home");
             }
             else
             {
@@ -95,7 +99,7 @@ namespace Clinic.Web.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction(nameof(Clinic.Web.Controllers.HomeController.Index), "Home");
+            return Redirect("/Home");
         }
 
         [Route("/AccessDenied")]

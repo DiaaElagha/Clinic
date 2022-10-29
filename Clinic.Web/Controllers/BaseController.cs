@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
 using Clinic.Core.Constant;
-using Clinic.Core.Entities;
 using Clinic.Core.Helper;
-using Microsoft.AspNetCore.Authorization;
+using Clinic.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System;
-using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 
