@@ -5,6 +5,7 @@ using Clinic.Data.Entities;
 using Clinic.Infrastructure.Services;
 using Clinic.Web.Helper;
 using Clinic.Web.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace Clinic.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AppointmentTypesController : BaseController
     {
         private IAppointmentTypeService _appointmentTypeService;

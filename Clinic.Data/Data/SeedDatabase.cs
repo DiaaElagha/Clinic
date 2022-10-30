@@ -31,7 +31,7 @@ namespace Clinic.Data.Data
                 .FirstOrDefault(c => c.Id.Equals(SystemConstant.SeedConst.USER_ID));
             if (defaultUser is null)
             {
-                defaultUser = new AppUser(SystemConstant.SeedConst.USER_ID)
+                defaultUser = new AppUser
                 {
                     Id = SystemConstant.SeedConst.USER_ID,
                     UserName = SystemConstant.SeedConst.USER_NAME,

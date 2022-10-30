@@ -9,6 +9,8 @@ using Clinic.Infrastructure.Services;
 using Clinic.Data.Entities;
 using Clinic.Infrastructure.Mapper;
 using Clinic.Web.Helper;
+using Microsoft.AspNetCore.Authentication;
+using Clinic.Web.Configurations;
 
 namespace Clinic.Web
 {
@@ -63,8 +65,8 @@ namespace Clinic.Web
 
             services.ConfigureApplicationCookie(options =>
             {
+                options.EventsType = typeof(XCookieAuthEvents);
                 options.ExpireTimeSpan = TimeSpan.FromDays(365);
-                options.SlidingExpiration = true;
                 options.SlidingExpiration = true;
             });
             services.AddDistributedMemoryCache();
@@ -120,7 +122,7 @@ namespace Clinic.Web
 
             //services.AddSingleton(typeof(IStorageService), typeof(StorageService));
             //services.AddTransient(typeof(ISMSSender), typeof(SMSSender));
-
+            services.AddScoped<XCookieAuthEvents>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -160,6 +162,5 @@ namespace Clinic.Web
             });
         }
     }
-
 }
 
