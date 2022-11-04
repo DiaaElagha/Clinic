@@ -1,0 +1,39 @@
+﻿@model Clinic.Web.Models.ViewModels.ReasonCancellationVM
+@{
+    ViewData["Title"] = "Create";
+    Layout = null;
+}
+<style>
+    .modal-xl {
+        max-width: 40%;
+    }
+</style>
+<form asp-action="CreateOrEdit" method="post" class="ajaxForm" tname="#dataTableId">
+    <input type="hidden" value="@Context.Request.Query["id"]" name="id" />
+    <div class="row">
+        <div class="col-md-6 text-right">
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control rounded" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <textarea asp-for="Note" class="form-control rounded" rows="4"></textarea>
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <hr class="horizontal dark my-sm-4">
+    <div class="form-group">
+        <button type="submit" class="btn bg-gradient-info rounded">حفظ التغيرات</button>
+        <button type="button" class="btn bg-gradient-secondary rounded" data-bs-dismiss="modal">اغلاق</button>
+    </div>
+</form>
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

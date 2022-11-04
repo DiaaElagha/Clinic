@@ -1,6 +1,6 @@
 ﻿@{
-      ViewData["PageTitle"] = "أنواع الحجوزات";
-    ViewData["PageName"] = "أنواع الحجوزات";
+    ViewData["PageTitle"] = "أنواع الغاء الحجوزات";
+    ViewData["PageName"] = "أنواع الغاء الحجوزات";
 }
 
 @section Css{
@@ -20,13 +20,13 @@
                 <div class="row">
                     <div class="col-md-9">
                         <h3 class="text-info">
-                            أنواع الحجوزات في النظام
+                            أنواع الغاء الحجوزات في النظام
                         </h3>
                     </div>
                     <div class="col-md-3 text-start">
                         <a class="btn bg-gradient-info PopUp" href="javascript:void(0)" 
-                           data-title="إضافة نوع حجز جديد"
-                           data-link="/AppointmentTypes/CreateOrEdit">إضافة جديد</a>
+                           data-title="إضافة نوع جديد"
+                           data-link="/ReasonCancellation/CreateOrEdit">إضافة جديد</a>
                     </div>
                 </div>
             </div>
@@ -100,29 +100,24 @@
                 //"bSort": false,
                 serverSide: true,
                 columns: [
-                    //{
-                    //    "render": function (data, type, row) {
-                    //        return '<span class="badge badge-sm bg-gradient-success">' + row["TypeName"] + '</span>';
-                    //    }
-                    //},
                     {
                         "render": function (data, type, row) {
-                            return '<b>' + row["TypeName"] + '</b>';
+                            return '<b>' + row["Title"] + '</b>';
                         }
                     },
                     { data: 'Note' },
                     {
                         name: 'buttons', "render": function (data, type, row) {
                             return ''
-                                + '<a href="javascript:void(0)" data-title="تعديل نوع الحجز" data-link="/AppointmentTypes/CreateOrEdit?id=' + row["Id"] + '" class="PopUp text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-edit fa-lg"></i></a>'
-                                + '<a href="javascript:void(0)" data-link="/AppointmentTypes/Delete/' + row["Id"] + '" tname="#dataTableId" class="Confirm text-secondary font-weight-bold text-danger text-xs me-2" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-trash fa-lg"></i></a>';
+                                + '<a href="javascript:void(0)" data-title="تعديل نوع الالغاء" data-link="/ReasonCancellation/CreateOrEdit?id=' + row["Id"] + '" class="PopUp text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-edit fa-lg"></i></a>'
+                                + '<a href="javascript:void(0)" data-link="/ReasonCancellation/Delete/' + row["Id"] + '" tname="#dataTableId" class="Confirm text-secondary font-weight-bold text-danger text-xs me-2" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-trash fa-lg"></i></a>';
                         }
                     }
                 ],
                 ajax: {
                     type: "POST",
                     contentType: "application/json",
-                    url: '/AppointmentTypes/GetAll',
+                    url: '/ReasonCancellation/GetAll',
                     data: function (d) {
                         d.SearchKey = ($("[name=SearchKey]").val());
                         return JSON.stringify(d);

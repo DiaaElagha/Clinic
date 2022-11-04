@@ -9,6 +9,7 @@ namespace Clinic.Infrastructure.Mapper
         public MapperProfile()
         {
             CreateMap<AppointmentTypeDto, AppointmentType>().ReverseMap();
+            CreateMap<ReasonCancellationDto, ReasonCancellation>().ReverseMap();
         }
     }
 }
