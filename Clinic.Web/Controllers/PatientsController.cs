@@ -18,13 +18,13 @@ namespace Clinic.Web.Controllers
     [Authorize(Roles = "Admin")]
     public class PatientsController : BaseController
     {
-        private IAppointmentTypeService _appointmentTypeService;
+        private IPatientsService _patientsService;
         public PatientsController(
             UserManager<AppUser> systemUsers,
             IMapper mapper,
-            IAppointmentTypeService appointmentTypeService) : base(systemUsers, mapper)
+            IPatientsService patientsService) : base(systemUsers, mapper)
         {
-            _appointmentTypeService = appointmentTypeService;
+            _patientsService = patientsService;
         }
 
         [HttpGet]
@@ -38,13 +38,12 @@ namespace Clinic.Web.Controllers
         {
             DataTableHelper d = new DataTableHelper(data);
 
-            var resultItems = await _appointmentTypeService.GetAppointmentsTypes(d.Start, d.Length, d.SearchKey);
+            var resultItems = await _patientsService.GetPatients(d.Start, d.Length, d.SearchKey);
 
-            var itemsResult = resultItems.AppointmentTypes.Select(x => new
+            var itemsResult = resultItems.Patients.Select(x => new
             {
-                x.Id,
-                x.TypeName,
-                x.Note,
+                x.PatientId,
+                FullName = x.PatientItem.FullName,
                 CreateDate = x.CreatedAt.ToString(SystemConstant.FormatDate)
             }).ToList();
             var result =
@@ -59,14 +58,14 @@ namespace Clinic.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> CreateOrEdit(int? id)
+        public async Task<IActionResult> CreateOrEdit(string id)
         {
-            if (id != null)
+            if (!id.IsNull())
             {
-                var item = await _appointmentTypeService.Get(id.Value);
+                var item = await _patientsService.Get(id);
                 if (item is not null)
                 {
-                    var model = _mapper.Map<AppointmentTypeVM>(item);
+                    var model = _mapper.Map<PatientVM>(item);
                     return View(model);
                 }
             }
@@ -75,28 +74,29 @@ namespace Clinic.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateOrEdit(int? id, AppointmentTypeVM model)
+        public async Task<IActionResult> CreateOrEdit(string id, PatientVM model)
         {
             if (!ModelState.IsValid) return View(model);
-            if (id is not null)
+            if (!id.IsNull())
             {
-                await _appointmentTypeService.UpdateAppointmentType(UserId, id.Value, _mapper.Map<AppointmentTypeDto>(model));
+                await _patientsService.UpdatePatient(UserId, id, _mapper.Map<PatientDto>(model));
                 return Ok(ResultsMessage.EditSuccessResult());
             }
             else
             {
-                await _appointmentTypeService.AddAppointmentType(UserId, _mapper.Map<AppointmentTypeDto>(model));
+                await _patientsService.AddPatient(UserId, _mapper.Map<PatientDto>(model));
                 return Ok(ResultsMessage.AddSuccessResult());
             }
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Delete(int id)
-        {
-            if (await _appointmentTypeService.Delete(id))
-                return Ok(ResultsMessage.DeleteSuccessResult());
-            return Ok(ResultsMessage.FailedResult());
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    if (await _appointmentTypeService.Delete(id))
+        //        return Ok(ResultsMessage.DeleteSuccessResult());
+        //    return Ok(ResultsMessage.FailedResult());
+        //}
+
 
     }
 }

@@ -10,6 +10,8 @@ namespace Clinic.Web.Helper
         {
             CreateMap<AppointmentTypeVM, AppointmentTypeDto>().ReverseMap();
             CreateMap<ReasonCancellationVM, ReasonCancellationDto>().ReverseMap();
+            CreateMap<UserVM, UserDto>().ReverseMap();
+            CreateMap<PatientVM, PatientDto>().ReverseMap();
         }
     }
 }

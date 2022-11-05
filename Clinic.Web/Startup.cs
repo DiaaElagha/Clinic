@@ -107,6 +107,7 @@ namespace Clinic.Web
 
             services.AddTransient<IAppointmentTypeService, AppointmentTypeService>();
             services.AddTransient<IReasonCancellationService, ReasonCancellationService>();
+            services.AddTransient<IPatientsService, PatientsService>();
 
             services.AddControllersWithViews()
                 .AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);

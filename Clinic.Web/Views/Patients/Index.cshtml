@@ -1,6 +1,6 @@
 ﻿@{
-    ViewData["PageTitle"] = "أنواع الغاء الحجوزات";
-    ViewData["PageName"] = "أنواع الغاء الحجوزات";
+      ViewData["PageTitle"] = "المرضى";
+    ViewData["PageName"] = "المرضى";
 }
 
 @section Css{
@@ -20,13 +20,13 @@
                 <div class="row">
                     <div class="col-md-9">
                         <h3 class="text-info">
-                            أنواع الغاء الحجوزات في النظام
+                            فهرس المرضى في النظام
                         </h3>
                     </div>
                     <div class="col-md-3 text-start">
                         <a class="btn bg-gradient-info PopUp" href="javascript:void(0)" 
-                           data-title="إضافة نوع جديد"
-                           data-link="/ReasonCancellation/CreateOrEdit">إضافة جديد</a>
+                           data-title="إضافة مريض تسجيل"
+                           data-link="/Patients/CreateOrEdit">تسجيل مريض جديد</a>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 <table class="table align-items-center mb-0" id="dataTableId">
                     <thead>
                         <tr>
-                            <th class="text-secondary text-xxl-end font-weight-bolder ">نوع الالغاء</th>
+                            <th class="text-secondary text-xxl-end font-weight-bolder ">اسم المريض</th>
                             <th class="text-secondary text-xxl-end font-weight-bolder ">ملاحظات</th>
                             <th class="text-secondary opacity-7"></th>
                         </tr>
@@ -102,22 +102,22 @@
                 columns: [
                     {
                         "render": function (data, type, row) {
-                            return '<b>' + row["Title"] + '</b>';
+                            return '<b>' + row["FullName"] + '</b>';
                         }
                     },
-                    { data: 'Note' },
+                    { data: 'PatientId' },
                     {
                         name: 'buttons', "render": function (data, type, row) {
                             return ''
-                                + '<a href="javascript:void(0)" data-title="تعديل نوع الالغاء" data-link="/ReasonCancellation/CreateOrEdit?id=' + row["Id"] + '" class="PopUp text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-edit fa-lg"></i></a>'
-                                + '<a href="javascript:void(0)" data-link="/ReasonCancellation/Delete/' + row["Id"] + '" tname="#dataTableId" class="Confirm text-secondary font-weight-bold text-danger text-xs me-2" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-trash fa-lg"></i></a>';
+                                + '<a href="javascript:void(0)" data-title="تعديل بيانات المريض" data-link="/Patients/CreateOrEdit?id=' + row["Id"] + '" class="PopUp text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-edit fa-lg"></i></a>'
+                                + '<a href="javascript:void(0)" data-link="/Patients/Delete/' + row["Id"] + '" tname="#dataTableId" class="Confirm text-secondary font-weight-bold text-danger text-xs me-2" data-toggle="tooltip" data-original-title="Edit user"><i class="fa fa-trash fa-lg"></i></a>';
                         }
                     }
                 ],
                 ajax: {
                     type: "POST",
                     contentType: "application/json",
-                    url: '/ReasonCancellation/GetAll',
+                    url: '/Patients/GetAll',
                     data: function (d) {
                         d.SearchKey = ($("[name=SearchKey]").val());
                         return JSON.stringify(d);
